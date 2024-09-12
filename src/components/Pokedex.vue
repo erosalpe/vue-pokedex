@@ -1,5 +1,6 @@
 <script setup>
     import SearchBox from '../components/SearchBox.vue';
+    import pokemonStatsBox from '../components/pokemonStatsBox.vue';
 </script>
 
 
@@ -14,6 +15,9 @@
         </div>
         <div id="right-section-top" class="position-absolute p-1">
             <SearchBox/>
+        </div>
+        <div id="right-section-bottom" class="position-absolute p-1">
+            <pokemonStatsBox/>
         </div>
     </div>
 </template>
@@ -33,20 +37,27 @@
 
     #left-section{
         background-color: rgb(20, 20, 20);
-        top: 24px;
+        top: 27px;
         left: 134px;
-        width: 1048px;
-        height: 784px;
+        width: 1045px;
+        height: 779px;
     }
 
     #right-section-top{
-        top: 58px;
-        right: 163px;
-        height: 291px;
-        width: 402px;
+        top: 57px;
+        right: 160px;
+        height: 294px;
+        width: 405px;
         background-color: rgb(20, 20, 20);
     }
 
-
+    #right-section-bottom{
+        bottom: 38px;
+        right: 145px;
+        height: 433px;
+        width: 402px;
+        background-color: rgb(20, 20, 20);
+        border-radius: 23px;
+    }
 
 </style>

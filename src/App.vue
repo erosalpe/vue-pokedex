@@ -4,7 +4,6 @@ import Pokedex from './components/Pokedex.vue'
 
 <template>
   <Pokedex/>
-  <!--<SearchBar/>-->
 </template>
 
 <style scoped>
