@@ -23,7 +23,12 @@ function PokeSearch(){
 
   axios.get(`https://pokeapi.co/api/v2/pokemon/${pokeName.value.toLowerCase()}`)
     .then(response => {
-      pokedexStore.pokeFoundAdd(response.data);
+      pokedexStore.pokeFoundAdd({
+        name: response.data.name,
+        sprites: response.data.sprites,
+        stats: response.data.stats,
+        types: response.data.types
+      });
       console.log(response.data);
       isntCatched(pokedexStore.pokeFound);
       console.log(btnShow.value);

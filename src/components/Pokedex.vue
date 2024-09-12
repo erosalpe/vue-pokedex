@@ -15,9 +15,9 @@
 
 <template>
     <div id="main-dex" class="position-relative">
-        <div id="left-section" class="position-absolute p-4">
+        <div id="left-section" class="position-absolute p-4 overflow-hidden overflow-y-scroll">
             <div class="d-flex flex-wrap overflow-auto">
-                <div v-for="pokemon in pokedexStore.pokemonsArray">
+                <div v-for="pokemon in pokedexStore.pokemonsArray" class="poke-card">
                     <div class="d-flex flex-column text-light text-capitalize justify-content-center align-items-center">
                         <img :src="pokemon.sprites.front_default" :alt="pokemon.name" class="dex-pokemon" @click="dexPokeSet(pokemon)">
                         <span>{{ pokemon.name }}</span>
@@ -55,6 +55,10 @@
         height: 779px;
     }
 
+    #left-section::-webkit-scrollbar{
+        display: none; /* Nasconde la scrollbar */
+    }
+
     #right-section-top{
         top: 57px;
         right: 160px;
@@ -81,5 +85,11 @@
 
     .dex-pokemon:hover{
         width: 160px;
+    }
+
+    .poke-card{
+        --gap: 0px;
+        --columns: 6;
+        flex-basis: calc((100% / var(--columns)) - var(--gap) + (var(--gap) / var(--columns)));
     }
 </style>
