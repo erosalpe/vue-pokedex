@@ -1,6 +1,11 @@
 <script setup>
     import SearchBox from '../components/SearchBox.vue';
     import pokemonStatsBox from '../components/pokemonStatsBox.vue';
+    import { usePokedexStore } from '../stores/pokedex.js';
+    const pokedexStore = usePokedexStore();
+    function dexPokeSet(data){
+        pokedexStore.pokeFoundAdd(data);
+    }
 </script>
 
 
@@ -11,13 +16,17 @@
 <template>
     <div id="main-dex" class="position-relative">
         <div id="left-section" class="position-absolute">
-            
+            <div class="d-flex flex-wrap overflow-auto">
+                <div v-for="pokemon in pokedexStore.pokemonsArray">
+                    <img :src="pokemon.sprites.front_default" :alt="pokemon.name" class="dex-pokemon" @click="dexPokeSet(pokemon)">
+                </div>
+            </div>
         </div>
         <div id="right-section-top" class="position-absolute p-1">
             <SearchBox/>
         </div>
         <div id="right-section-bottom" class="position-absolute p-1">
-            <pokemonStatsBox/>
+            <pokemonStatsBox v-if="pokedexStore.pokeFound"/>
         </div>
     </div>
 </template>
@@ -60,4 +69,8 @@
         border-radius: 23px;
     }
 
+    .dex-pokemon{
+        width: 150px;
+        height: auto;
+    }
 </style>

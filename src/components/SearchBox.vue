@@ -80,7 +80,6 @@ function pokeFree(){
 
 <style scoped>
   #poke-show {
-    /*background-color: yellow;*/
     width: 395px;
     height: 239px;
     margin-top: 7px;

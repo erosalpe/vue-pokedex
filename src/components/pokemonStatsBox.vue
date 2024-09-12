@@ -47,17 +47,16 @@ const chartOptions = {
             },
             grid: {
                 display: true, // Nasconde la griglia
-                color: 'rgba(255, 255, 255, 1)' // Colore delle linee della griglia
+                color: 'rgba(255, 255, 255, 0.2)', // Colore delle linee della griglia
             },
             ticks: {
                 display: false, // Nasconde i numeri sui ticks
-                backdropColor: 'rgba(255, 255, 255, 0)' // Colore delle etichette dei tick
             },
             pointLabels: {
                 display: true, // Mostra le etichette sui punti
                 color: 'rgba(255, 255, 255, 1)', // Colore delle etichette delle statistiche
                 font: {
-                    size: 12, // Modifica la dimensione del font se necessario
+                    size: 14, // Modifica la dimensione del font se necessario
                 }
             },
             suggestedMin: 0,
@@ -68,14 +67,22 @@ const chartOptions = {
 
 // Definisci i dati del grafico
 const chartData = {
-    labels: ['Speed', 'Attack', 'Defense', 'HP', 'Special Attack', 'Special Defense'],
+    labels: ['HP', 'Attack', 'Defense', 'Speed', 'Sp. Def', 'Sp. Atk'],
     datasets: [
         {
-            data: [70, 50, 60, 80, 90, 70], // statistiche del pokemon
+            data: [
+                pokedexStore.pokeFound.stats[0].base_stat, 
+                pokedexStore.pokeFound.stats[1].base_stat, 
+                pokedexStore.pokeFound.stats[2].base_stat, 
+                pokedexStore.pokeFound.stats[5].base_stat, 
+                pokedexStore.pokeFound.stats[4].base_stat, 
+                pokedexStore.pokeFound.stats[3].base_stat,
+            ], // statistiche del pokemon
             fill: 'origin', // Rende piena l'area descritta dalle linee
-            backgroundColor: 'rgba(255, 255, 255, 0.2)', // Colore di riempimento
-            borderColor: 'rgba(255, 255, 255, 1)', // Colore delle linee delle statistiche
-            borderWidth: 2,
+            backgroundColor: 'rgba(255, 215, 67, 0.2)', // Colore di riempimento
+            borderColor: 'rgba(255, 215, 67, 1)', // Colore delle linee delle statistiche
+            borderWidth: 4,
+            drawBorder: true,
             pointRadius: 0, // Nasconde i cerchi sugli angoli
             
         }
@@ -83,14 +90,24 @@ const chartData = {
 };
 
 const chartId = 'pokemon-radar-chart'; // ID unico per il grafico
-const width = 600; // Larghezza del grafico
-const height = 600; // Altezza del grafico
+const width = 500; // Larghezza del grafico
+const height = 500; // Altezza del grafico
 </script>
 
 <template>
     <div id="info-container">
-        <span>Nome</span>
-        <span>Type</span>
+        <div class="d-flex text-light justify-content-between px-5 text-capitalize">
+            <div class="d-flex flex-column justify-content-center align-items-center">
+                <span>Name:</span>
+                <span>{{pokedexStore.pokeFound.name}}</span>
+            </div>
+            <div class="d-flex flex-column justify-content-center align-items-center">
+                <span>Type:</span>
+                <div class="d-flex gap-2">
+                    <span v-for="type in pokedexStore.pokeFound.types">{{type.type.name}}</span>
+                </div>
+            </div>
+        </div>
         <Radar
             aria-label="Stats Chart"
             :options="chartOptions"
