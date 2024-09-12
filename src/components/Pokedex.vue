@@ -15,10 +15,13 @@
 
 <template>
     <div id="main-dex" class="position-relative">
-        <div id="left-section" class="position-absolute">
+        <div id="left-section" class="position-absolute p-4">
             <div class="d-flex flex-wrap overflow-auto">
                 <div v-for="pokemon in pokedexStore.pokemonsArray">
-                    <img :src="pokemon.sprites.front_default" :alt="pokemon.name" class="dex-pokemon" @click="dexPokeSet(pokemon)">
+                    <div class="d-flex flex-column text-light text-capitalize justify-content-center align-items-center">
+                        <img :src="pokemon.sprites.front_default" :alt="pokemon.name" class="dex-pokemon" @click="dexPokeSet(pokemon)">
+                        <span>{{ pokemon.name }}</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -72,5 +75,11 @@
     .dex-pokemon{
         width: 150px;
         height: auto;
+        cursor: pointer;
+        transition: width 0.5s ease;
+    }
+
+    .dex-pokemon:hover{
+        width: 160px;
     }
 </style>
