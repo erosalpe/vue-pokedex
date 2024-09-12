@@ -73,10 +73,10 @@
     #right-section-bottom{
         bottom: 38px;
         right: 145px;
-        height: 433px;
+        height: 434px;
         width: 402px;
         background-color: rgb(20, 20, 20);
-        border-radius: 23px;
+        border-radius: 24px;
     }
 
     .dex-pokemon{
