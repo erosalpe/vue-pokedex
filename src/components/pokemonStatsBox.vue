@@ -1,6 +1,7 @@
 <script setup>
 import { usePokedexStore } from '../stores/pokedex.js';
 import { Radar } from 'vue-chartjs';
+import { computed } from 'vue';
 import {
     Chart as ChartJS,
     Title,
@@ -66,28 +67,30 @@ const chartOptions = {
 };
 
 // Definisci i dati del grafico
-const chartData = {
-    labels: ['HP', 'Attack', 'Defense', 'Speed', 'Sp. Def', 'Sp. Atk'],
-    datasets: [
-        {
-            data: [
-                pokedexStore.pokeFound.stats[0].base_stat, 
-                pokedexStore.pokeFound.stats[1].base_stat, 
-                pokedexStore.pokeFound.stats[2].base_stat, 
-                pokedexStore.pokeFound.stats[5].base_stat, 
-                pokedexStore.pokeFound.stats[4].base_stat, 
-                pokedexStore.pokeFound.stats[3].base_stat,
-            ], // statistiche del pokemon
-            fill: 'origin', // Rende piena l'area descritta dalle linee
-            backgroundColor: 'rgba(255, 215, 67, 0.2)', // Colore di riempimento
-            borderColor: 'rgba(255, 215, 67, 1)', // Colore delle linee delle statistiche
-            borderWidth: 4,
-            drawBorder: true,
-            pointRadius: 0, // Nasconde i cerchi sugli angoli
-            
-        }
-    ]
-};
+const chartData = computed(() => {
+    return {
+        labels: ['HP', 'Attack', 'Defense', 'Speed', 'Sp. Def', 'Sp. Atk'],
+        datasets: [
+            {
+                data: [
+                    pokedexStore.pokeFound.stats[0].base_stat, 
+                    pokedexStore.pokeFound.stats[1].base_stat, 
+                    pokedexStore.pokeFound.stats[2].base_stat, 
+                    pokedexStore.pokeFound.stats[5].base_stat, 
+                    pokedexStore.pokeFound.stats[4].base_stat, 
+                    pokedexStore.pokeFound.stats[3].base_stat,
+                ], // statistiche del pokemon
+                fill: 'origin', // Rende piena l'area descritta dalle linee
+                backgroundColor: 'rgba(255, 215, 67, 0.2)', // Colore di riempimento
+                borderColor: 'rgba(255, 215, 67, 1)', // Colore delle linee delle statistiche
+                borderWidth: 4,
+                drawBorder: true,
+                pointRadius: 0, // Nasconde i cerchi sugli angoli
+                
+            }
+        ]
+    }
+});
 
 const chartId = 'pokemon-radar-chart'; // ID unico per il grafico
 const width = 500; // Larghezza del grafico

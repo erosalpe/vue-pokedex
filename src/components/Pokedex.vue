@@ -4,7 +4,10 @@
     import { usePokedexStore } from '../stores/pokedex.js';
     const pokedexStore = usePokedexStore();
     function dexPokeSet(data){
+        console.log('dati:',data);
+        console.log('pokefound:',pokedexStore.pokeFound);
         pokedexStore.pokeFoundAdd(data);
+        console.log('pokefound:',pokedexStore.pokeFound);
     }
 </script>
 
