@@ -80,11 +80,11 @@
         width: 150px;
         height: auto;
         cursor: pointer;
-        transition: width 0.5s ease;
+        transition: transform 0.5s ease;
     }
 
     .dex-pokemon:hover{
-        width: 160px;
+        transform: scale(1.2);
     }
 
     .poke-card{
