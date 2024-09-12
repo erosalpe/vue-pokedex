@@ -54,11 +54,17 @@ const chartOptions = {
                 display: false, // Nasconde i numeri sui ticks
             },
             pointLabels: {
-                display: true, // Mostra le etichette sui punti
+                display: true,
+                callback: (value,index) => {
+                    // Qui puoi personalizzare l'etichetta e aggiungere valori numerici
+                    const labels = ['HP', 'Attack', 'Defense', 'Speed', 'Sp. Def', 'Sp. Atk'];
+                    const values = [pokedexStore.pokeFound.stats[0].base_stat, pokedexStore.pokeFound.stats[1].base_stat, pokedexStore.pokeFound.stats[2].base_stat, pokedexStore.pokeFound.stats[5].base_stat, pokedexStore.pokeFound.stats[4].base_stat, pokedexStore.pokeFound.stats[3].base_stat]; // Aggiungi qui i tuoi valori
+                    return `${labels[index]} ${values[index]}`;
+                }, // Mostra le etichette sui punti
                 color: 'rgba(255, 255, 255, 1)', // Colore delle etichette delle statistiche
                 font: {
                     size: 14, // Modifica la dimensione del font se necessario
-                }
+                },
             },
             suggestedMin: 0,
             suggestedMax: 100,
@@ -127,5 +133,6 @@ const height = 500; // Altezza del grafico
     /*background-color: yellow;*/
     height: 100%;
     border-radius: 27px;
+    padding: 10px;
 }
 </style>
